@@ -13,6 +13,7 @@ for (var i = 0; i < mazeHeight; i++) {
 }
 var posX = 1;
 var posY = 1;
+let roll;
 tiles[posX][posY] = 0;
 moves.push(posY + posY * mazeWidth);
 
@@ -82,29 +83,97 @@ for (var a = 0; a < 500; a++) {
   }
 }
 
-function setPossibleChestLocation() {
-  let possibleLocation = [
-    Math.floor(
-      Math.random() * Math.floor(mazeHeight / 2) + Math.floor(mazeHeight / 3)
-    ),
-    Math.floor(
-      Math.random() * Math.floor(mazeWidth / 2) + Math.floor(mazeWidth / 3)
-    )
-  ];
+function setMiddleChestLocation() {
+  function setPossibleChestLocation() {
+    let possibleLocation = [
+      Math.floor(
+        Math.random() * Math.floor(mazeHeight / 3) +
+          Math.floor(mazeHeight * 2 / 5)
+      ),
+      Math.floor(
+        Math.random() * Math.floor(mazeWidth / 3) + Math.floor(mazeWidth / 3)
+      )
+    ];
+    setChestLocation(possibleLocation);
+  }
+  function setChestLocation(possibleLocation) {
+    let y = possibleLocation[0];
+    let x = possibleLocation[1];
 
-  setChestLocation(possibleLocation);
+    if (tiles[y][x] === 0) {
+      tiles[y][x] = 2;
+      return;
+    } else {
+      setPossibleChestLocation();
+    }
+  }
+  setPossibleChestLocation();
+}
+function setBottomLeftCornerChestLocation() {
+  function setPossibleChestLocation() {
+    let possibleLocation = [
+      Math.floor(
+        Math.random() * Math.floor(mazeHeight / 6) +
+          Math.floor(mazeHeight * 5 / 6)
+      ),
+      Math.floor(Math.random() * Math.floor(mazeWidth / 6))
+    ];
+    setChestLocation(possibleLocation);
+  }
+  function setChestLocation(possibleLocation) {
+    let y = possibleLocation[0];
+    let x = possibleLocation[1];
+
+    if (tiles[y][x] === 0) {
+      tiles[y][x] = 2;
+      return;
+    } else {
+      setPossibleChestLocation();
+    }
+  }
+  setPossibleChestLocation();
 }
 
-function setChestLocation(possibleLocation) {
-  let y = possibleLocation[0];
-  let x = possibleLocation[1];
+function setTopRightCornerChestLocation() {
+  function setPossibleChestLocation() {
+    let possibleLocation = [
+      Math.floor(Math.random() * Math.floor(mazeHeight / 6)),
+      Math.floor(
+        Math.random() * Math.floor(mazeWidth / 6) +
+          Math.floor(mazeWidth * 5 / 6)
+      )
+    ];
+    setChestLocation(possibleLocation);
+  }
+  function setChestLocation(possibleLocation) {
+    let y = possibleLocation[0];
+    let x = possibleLocation[1];
 
-  if (tiles[y][x] === 0) {
-    tiles[y][x] = 2;
-    return;
-  } else {
-    setPossibleChestLocation();
+    if (tiles[y][x] === 0) {
+      tiles[y][x] = 2;
+      return;
+    } else {
+      setPossibleChestLocation();
+    }
+  }
+  setPossibleChestLocation();
+}
+
+function rollChestType() {
+  roll = Math.floor(Math.random() * 3);
+
+  if (roll === 0) {
+    console.log("0");
+    setMiddleChestLocation();
+  }
+  if (roll === 1) {
+    console.log("1");
+    setTopRightCornerChestLocation();
+  }
+  if (roll === 2) {
+    console.log("2");
+    setBottomLeftCornerChestLocation();
   }
 }
 
-setPossibleChestLocation();
+rollChestType();

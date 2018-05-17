@@ -20,8 +20,10 @@ function Timer(props) {
     }
     var timerInterval = setInterval(timerDownInterval, 1000);
   }
+
   window.onload = function() {
     console.log("timer started");
+    console.log(window.onload);
     timerDown();
   };
 

@@ -25,7 +25,7 @@ function World(props) {
       <Map />
       <Player />
       <Timer />
-      {/* <Ai /> */}
+      <Ai />
     </div>
   );
 }
