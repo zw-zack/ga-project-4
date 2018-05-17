@@ -85,10 +85,10 @@ for (var a = 0; a < 500; a++) {
 function setPossibleChestLocation() {
   let possibleLocation = [
     Math.floor(
-      Math.random() * Math.floor(mazeHeight / 2) + Math.floor(mazeHeight / 2)
+      Math.random() * Math.floor(mazeHeight / 2) + Math.floor(mazeHeight / 3)
     ),
     Math.floor(
-      Math.random() * Math.floor(mazeWidth / 2) + Math.floor(mazeWidth / 2)
+      Math.random() * Math.floor(mazeWidth / 2) + Math.floor(mazeWidth / 3)
     )
   ];
 

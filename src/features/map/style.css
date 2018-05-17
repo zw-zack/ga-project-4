@@ -3,11 +3,13 @@
 }
 .tile {
     display: inline-flex;
-    background-color: #42b842;
+    background-color: white;
+    /* background-color: #42b842; */
 }
 
 .grass{
-    background-color: #42b842;
+    background-color: white;
+    /* background-color: #42b842; */
 }
 
 .rock{

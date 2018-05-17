@@ -21,6 +21,7 @@ function Timer(props) {
     var timerInterval = setInterval(timerDownInterval, 1000);
   }
   window.onload = function() {
+    console.log("timer started");
     timerDown();
   };
 
@@ -31,7 +32,7 @@ function Timer(props) {
         position: "absolute",
         top: "0px",
         left: "1300px",
-        color: "white"
+        color: "blue"
       }}
     >
       Timer: {store.getState().timer.timer}

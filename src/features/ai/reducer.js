@@ -1,6 +1,6 @@
 const initialState = {
-  position: [1400, 760],
-  spriteLocation: "1400px 760px",
+  position: [1320, 680],
+  spriteLocation: "1320px 680px",
   direction: "north",
   walkIndex: 0
 };

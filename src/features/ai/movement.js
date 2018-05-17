@@ -1,6 +1,6 @@
 import store from "../../config/store";
 import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from "../../config/constants";
-export default function handleMovement(player) {
+export default function handleMovement(ai) {
   function getNewPosition(oldPos, direction) {
     switch (direction) {
       case "WEST":
@@ -19,21 +19,21 @@ export default function handleMovement(player) {
   function getSpriteLocation(direction, walkIndex) {
     switch (direction) {
       case "SOUTH":
-        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 0}px`;
-      case "EAST":
-        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 1}px`;
+        return `${30 * walkIndex}px ${SPRITE_SIZE * 0}px`;
       case "WEST":
-        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 2}px`;
+        return `${30 * walkIndex}px ${SPRITE_SIZE * 1}px`;
+      case "EAST":
+        return `${30 * walkIndex}px ${SPRITE_SIZE * 2}px`;
       case "NORTH":
-        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 3}px`;
+        return `${30 * walkIndex}px ${SPRITE_SIZE * 3}px`;
       default:
         return;
     }
   }
 
   function getWalkIndex() {
-    const walkIndex = store.getState().player.walkIndex;
-    return walkIndex >= 7 ? 0 : walkIndex + 1;
+    const walkIndex = store.getState().ai.walkIndex;
+    return walkIndex >= 2 ? 0 : walkIndex + 1;
   }
 
   function observeBoundaries(oldPos, newPos) {
@@ -63,7 +63,7 @@ export default function handleMovement(player) {
   function dispatchMove(direction, newPos) {
     const walkIndex = getWalkIndex();
     store.dispatch({
-      type: "MOVE_PLAYER",
+      type: "MOVE_AI",
       payload: {
         position: newPos,
         direction: direction,
@@ -74,28 +74,28 @@ export default function handleMovement(player) {
   }
 
   function attemptMove(direction) {
-    const oldPos = store.getState().player.position;
+    const oldPos = store.getState().ai.position;
     const newPos = getNewPosition(oldPos, direction);
 
     if (observeBoundaries(oldPos, newPos) && observeImpassable(oldPos, newPos))
       dispatchMove(direction, newPos);
 
-    if (chestCollected(oldPos, newPos)) alert("You Won!");
+    if (chestCollected(oldPos, newPos)) alert("AI Won!");
   }
 
   function handleKeyDown(e) {
     e.preventDefault();
     switch (e.keyCode) {
-      case 65:
+      case 49:
         return attemptMove("WEST");
 
-      case 87:
+      case 50:
         return attemptMove("NORTH");
 
-      case 68:
+      case 51:
         return attemptMove("EAST");
 
-      case 83:
+      case 52:
         return attemptMove("SOUTH");
 
       default:
@@ -105,5 +105,5 @@ export default function handleMovement(player) {
   window.addEventListener("keydown", e => {
     handleKeyDown(e);
   });
-  return player;
+  return ai;
 }
