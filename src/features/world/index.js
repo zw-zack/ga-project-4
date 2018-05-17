@@ -1,15 +1,15 @@
 import React from "react";
 import Map from "../map";
 import Player from "../player";
-import { tiles1, timer1 } from "../../data/maps/1";
+import Timer from "../timer";
+import { tiles } from "../../data/maps/2";
 import store from "../../config/store";
 
 function World(props) {
   store.dispatch({
     type: "ADD_TILES",
     payload: {
-      tiles: tiles1,
-      timer: timer1
+      tiles: tiles
     }
   });
   return (
@@ -23,6 +23,7 @@ function World(props) {
     >
       <Map />
       <Player />
+      <Timer />
     </div>
   );
 }
