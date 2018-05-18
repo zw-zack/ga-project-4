@@ -22,14 +22,14 @@ function Ai(props) {
         ? document.dispatchEvent(keyboardEvent)
         : document.fireEvent(event, keyboardEvent);
     }
-    let y = 17;
+    let y = 33;
     let x = 33;
     let movementArr = [];
     let backTrack;
     let turnMemory = false;
     let memoryX = [];
     let memoryY = [];
-    for (let i = 0; i < 500; i++) {
+    for (let i = 0; i < 1500; i++) {
       let possibleDirections = "";
 
       if (tiles[y + 1][x] === 2 && backTrack !== "N") {
@@ -133,31 +133,34 @@ function Ai(props) {
       } else {
         backTrack = "";
       }
-      // console.log(memoryX);
-      // console.log(memoryY);
     }
     var a = 0;
     function aiMoveLoop() {
       setTimeout(function() {
         if (movementArr[a] === "W") {
           fireKeyboardEvent("keydown", 49);
+          console.log("W");
         }
         if (movementArr[a] === "N") {
           fireKeyboardEvent("keydown", 50);
+          console.log("N");
         }
         if (movementArr[a] === "E") {
           fireKeyboardEvent("keydown", 51);
+          console.log("E");
         }
         if (movementArr[a] === "S") {
           fireKeyboardEvent("keydown", 52);
+          console.log("S");
         }
         a++;
-        if (a < 1000) {
+        if (a < 1500) {
           aiMoveLoop();
         }
-      }, 200);
+      }, 100);
     }
     aiMoveLoop();
+    console.log(movementArr);
   }
   var timeout;
 

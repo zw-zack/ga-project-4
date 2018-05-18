@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import walkSprite from "./player_walk.png";
-import fog from "./fog.png";
+import fog2 from "./fog2.png";
 import handleMovement from "./movement";
+import Timer from "../timer";
 
 function Player(props) {
   return (
@@ -17,20 +18,22 @@ function Player(props) {
           width: "40px",
           height: "40px"
         }}
-      />
-      {/* <div
+      >
+        <Timer />
+      </div>
+      <div
         className="vision"
         style={{
           position: "absolute",
-          top: props.position[1] - 850,
-          left: props.position[0] - 1740,
-          backgroundImage: `url('${fog}')`,
+          top: props.position[1] - 1650,
+          left: props.position[0] - 1755,
+          backgroundImage: `url('${fog2}')`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
           width: "3500px",
           height: "3500px"
         }}
-      /> */}
+      />
     </div>
   );
 }

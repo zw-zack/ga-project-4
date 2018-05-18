@@ -1,8 +1,8 @@
-export var timer = 60;
+export var timer = 150;
 export var tiles = [];
 
 var mazeWidth = 35;
-var mazeHeight = 19;
+var mazeHeight = 35;
 
 var moves = [];
 for (var i = 0; i < mazeHeight; i++) {
@@ -17,7 +17,7 @@ let roll;
 tiles[posX][posY] = 0;
 moves.push(posY + posY * mazeWidth);
 
-for (var a = 0; a < 500; a++) {
+for (var a = 0; a < 800; a++) {
   if (moves.length) {
     var possibleDirections = "";
     if (
@@ -82,7 +82,7 @@ for (var a = 0; a < 500; a++) {
     }
   }
 }
-
+console.log(tiles);
 function setMiddleChestLocation() {
   function setPossibleChestLocation() {
     let possibleLocation = [

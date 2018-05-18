@@ -22,8 +22,6 @@ function Timer(props) {
   }
 
   window.onload = function() {
-    console.log("timer started");
-    console.log(window.onload);
     timerDown();
   };
 
@@ -31,10 +29,12 @@ function Timer(props) {
     <div
       className="timer"
       style={{
-        position: "absolute",
-        top: "0px",
-        left: "1300px",
-        color: "blue"
+        position: "relative",
+        top: "100px",
+        color: "white",
+        margin: "0 auto",
+        textAlign: "center",
+        zIndex: "5"
       }}
     >
       Timer: {store.getState().timer.timer}
