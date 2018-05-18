@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import walkSprite from "./ai_walk.jpeg";
-import handleMovement from "./movement";
+import handleMovementTwo from "./movement";
 import { tiles } from "../../data/maps/2";
 
-function Ai(props) {
+function AiTwo(props) {
   function testMove() {
     function fireKeyboardEvent(event, keycode) {
       var keyboardEvent = document.createEventObject
@@ -22,8 +22,8 @@ function Ai(props) {
         ? document.dispatchEvent(keyboardEvent)
         : document.fireEvent(event, keyboardEvent);
     }
-    let y = 33;
-    let x = 33;
+    let y = 3;
+    let x = 1;
     let movementArr = [];
     let backTrack;
     let turnMemory = false;
@@ -138,16 +138,16 @@ function Ai(props) {
     function aiMoveLoop() {
       setTimeout(function() {
         if (movementArr[a] === "W") {
-          fireKeyboardEvent("keydown", 49);
+          fireKeyboardEvent("keydown", 53);
         }
         if (movementArr[a] === "N") {
-          fireKeyboardEvent("keydown", 50);
+          fireKeyboardEvent("keydown", 54);
         }
         if (movementArr[a] === "E") {
-          fireKeyboardEvent("keydown", 51);
+          fireKeyboardEvent("keydown", 55);
         }
         if (movementArr[a] === "S") {
-          fireKeyboardEvent("keydown", 52);
+          fireKeyboardEvent("keydown", 56);
         }
         a++;
         if (a < 1500) {
@@ -156,7 +156,7 @@ function Ai(props) {
       }, 300);
     }
     aiMoveLoop();
-    console.log("Ai One:" + movementArr);
+    console.log(movementArr);
   }
   var timeout;
 
@@ -200,7 +200,7 @@ function Ai(props) {
 
 function mapStateToProps(state) {
   return {
-    ...state.ai
+    ...state.aiTwo
   };
 }
-export default connect(mapStateToProps)(handleMovement(Ai));
+export default connect(mapStateToProps)(handleMovementTwo(AiTwo));

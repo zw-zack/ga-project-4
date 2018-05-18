@@ -1,6 +1,6 @@
 import store from "../../config/store";
 import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from "../../config/constants";
-export default function handleMovement(ai) {
+export default function handleMovementTwo(aiTwo) {
   function getNewPosition(oldPos, direction) {
     switch (direction) {
       case "WEST":
@@ -32,7 +32,7 @@ export default function handleMovement(ai) {
   }
 
   function getWalkIndex() {
-    const walkIndex = store.getState().ai.walkIndex;
+    const walkIndex = store.getState().aiTwo.walkIndex;
     return walkIndex >= 2 ? 0 : walkIndex + 1;
   }
 
@@ -63,7 +63,7 @@ export default function handleMovement(ai) {
   function dispatchMove(direction, newPos) {
     const walkIndex = getWalkIndex();
     store.dispatch({
-      type: "MOVE_AI",
+      type: "MOVE_AI_TWO",
       payload: {
         position: newPos,
         direction: direction,
@@ -74,28 +74,28 @@ export default function handleMovement(ai) {
   }
 
   function attemptMove(direction) {
-    const oldPos = store.getState().ai.position;
+    const oldPos = store.getState().aiTwo.position;
     const newPos = getNewPosition(oldPos, direction);
 
     if (observeBoundaries(oldPos, newPos) && observeImpassable(oldPos, newPos))
       dispatchMove(direction, newPos);
 
-    if (chestCollected(oldPos, newPos)) alert("AI Won!");
+    if (chestCollected(oldPos, newPos)) alert("Ai Two Won!");
   }
 
   function handleKeyDown(e) {
     e.preventDefault();
     switch (e.keyCode) {
-      case 49:
+      case 53:
         return attemptMove("WEST");
 
-      case 50:
+      case 54:
         return attemptMove("NORTH");
 
-      case 51:
+      case 55:
         return attemptMove("EAST");
 
-      case 52:
+      case 56:
         return attemptMove("SOUTH");
 
       default:
@@ -105,5 +105,5 @@ export default function handleMovement(ai) {
   window.addEventListener("keydown", e => {
     handleKeyDown(e);
   });
-  return ai;
+  return aiTwo;
 }

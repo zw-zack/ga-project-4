@@ -31,7 +31,7 @@ function Timer(props) {
       style={{
         position: "relative",
         top: "100px",
-        color: "white",
+        color: "#7c7272",
         margin: "0 auto",
         textAlign: "center",
         zIndex: "5"
